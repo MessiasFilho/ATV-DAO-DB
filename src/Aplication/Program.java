@@ -1,6 +1,7 @@
 package Aplication;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import Model.DAO.DaoFactory;
 import Model.DAO.SellerDAO;
@@ -12,17 +13,31 @@ public class Program {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Deparment dep = new Deparment ( 2 , "Celular" ); 
-		Seller sell = new Seller(1 , "Alex ", "Alex@gmail.com", new Date() , 300.0 , dep   ) ;   
 		
+		
+		
+		System.out.println("Teste 1 == findById");
+		SellerDAO sel = DaoFactory.CreateSellerDao();  
+		Seller sell = sel.findById(2); 
 		System.out.println(sell );
 		
 		
-		SellerDAO SeDao = DaoFactory.CreateSellerDao();
-		
+		System.out.println("\nTESTE 2 == FindByDepartment");
+		Deparment dep = new Deparment  (2 , null  ); 
+		List <Seller> list = sel.FindByDepartment(dep ); 
+		for (Seller obj : list ) {
+			System.out.println(obj);
+		}
 				
-
-	
+		System.out.println("\n Teste3 == findALL ==  ");
+		
+		List <Seller > list2 = new ArrayList<>();  
+		list2= sel.findALL(); 
+		for (Seller obj : list2 ) {
+			System.out.println(obj);
+			
+		}
+		
 	}
 	
 
